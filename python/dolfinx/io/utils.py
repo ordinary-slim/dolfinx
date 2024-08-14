@@ -282,7 +282,7 @@ class XDMFFile(_cpp.io.XDMFFile):
 
 
 def distribute_entity_data(
-    mesh: Mesh, entity_dim: int, entities: npt.NDArray[np.int64], values: np.ndarray
+    mesh: Mesh, entity_dim: int, entities: npt.NDArray[np.int64], values: npt.NDArray
 ) -> tuple[npt.NDArray[np.int64], np.ndarray]:
     """Given a set of mesh entities and values, distribute them to the process that owns the entity.
 

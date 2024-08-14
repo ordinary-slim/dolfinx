@@ -12,6 +12,7 @@ import functools
 import typing
 
 import numpy as np
+import numpy.typing as npt
 
 import dolfinx
 from dolfinx import cpp as _cpp
@@ -183,7 +184,7 @@ def _assemble_vector_form(L: Form, constants=None, coeffs=None) -> la.Vector:
 
 
 @assemble_vector.register(np.ndarray)
-def _assemble_vector_array(b: np.ndarray, L: Form, constants=None, coeffs=None):
+def _assemble_vector_array(b: npt.NDArray, L: Form, constants=None, coeffs=None):
     """Assemble linear form into an existing array.
 
     Args:
@@ -297,10 +298,10 @@ def _assemble_matrix_csr(
 
 
 def apply_lifting(
-    b: np.ndarray,
+    b: npt.NDArray,
     a: list[Form],
     bcs: list[list[DirichletBC]],
-    x0: typing.Optional[list[np.ndarray]] = None,
+    x0: typing.Optional[list[npt.NDArray]] = None,
     scale: float = 1.0,
     constants=None,
     coeffs=None,
@@ -344,9 +345,9 @@ def apply_lifting(
 
 
 def set_bc(
-    b: np.ndarray,
+    b: npt.NDArray,
     bcs: list[DirichletBC],
-    x0: typing.Optional[np.ndarray] = None,
+    x0: typing.Optional[npt.NDArray] = None,
     scale: float = 1.0,
 ) -> None:
     """Insert boundary condition values into vector.
